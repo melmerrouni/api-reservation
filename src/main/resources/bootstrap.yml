@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: api-reservation
+  cloud:
+    config:
+      uri: ${CONFIG_SER_URI:http://localhost:8888}
