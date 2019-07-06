@@ -37,14 +37,15 @@ node {
     //  })
     //}
 		
-   // stage('Build Docker Image') {
-   //   // build docker image
-   //   sh "whoami"
-   //   sh "ls -all /var/run/docker.sock"
-   //   sh "mv ./target/hello*.jar ./data" 
+    stage('Build Docker Image') {
+      // build docker image
+      //sh "whoami"
+      //sh "ls -all /var/run/docker.sock"
+      //sh "mv ./target/hello*.jar ./data" 
+      sh "./mvnw install dockerfile:build"
       
-   //   dockerImage = docker.build("hello-world-java")
- //   }
+      //dockerImage = docker.build("hello-world-java")
+    }
    
  //   stage('Deploy Docker Image'){
       
