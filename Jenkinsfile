@@ -10,9 +10,9 @@ node {
     //def dockerRepoUrl = "localhost:8083"
     //def dockerImageName = "hello-world-java"
     //def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
-     environment {
-       DOCKER_HOST = "tcp://172.17.0.1:2375"
-   }
+ //    environment {
+  //     DOCKER_HOST = "tcp://172.17.0.1:2375"
+  // }
     stage('Clone Repo') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/melmerrouni/api-reservation.git'
