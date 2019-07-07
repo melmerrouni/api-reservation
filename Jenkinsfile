@@ -44,7 +44,7 @@ node {
       //sh "whoami"
       //sh "ls -all /var/run/docker.sock"
       //sh "mv ./target/hello*.jar ./data" 
-      sh "sudo ./mvnw install dockerfile:build"
+      sh "./mvnw install dockerfile:build"
       
       //dockerImage = docker.build("hello-world-java")
     }
