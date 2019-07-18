@@ -50,7 +50,7 @@ node {
       //dockerImage = docker.build("hello-world-java")
     }
    
-   stage('Deploy Docker Image'){
+   stage('Push Docker Image'){
       
       // deploy docker image to nexus
 
@@ -59,5 +59,16 @@ node {
      sh "docker login -u ${env.REGISTRY_USER_NAME} -p ${env.REGISTRY_PASSWORD} ${dockerRepoUrl}"
      sh "docker tag ${dockerImageName} ${dockerImageTag}"
      sh "docker push ${dockerImageTag}"
+   }
+
+   stage('Run Docker Image'){
+      
+      // deploy docker image to nexus
+
+     echo "Running: ${dockerImageTag}"
+
+     sh "docker kill ${dockerImageTag} > /dev/null 2>&1"
+     sh "docker rm ${dockerImageTag} > /dev/null 2>&1"
+     sh "docker run -t ${dockerImageTag}"
    }
 }
