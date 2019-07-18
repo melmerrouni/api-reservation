@@ -57,18 +57,22 @@ node {
      echo "Docker Image Tag Name: ${dockerImageTag}"
 
      sh "docker login -u admin -p Marouane1 ${dockerRepoUrl}"
+          echo "login"
+
      sh "docker tag ${dockerImageName} ${dockerImageTag}"
+          echo "tag"
      sh "docker push ${dockerImageTag}"
+          echo "push"
    }
 
-   stage('Run Docker Image'){
+  //  stage('Run Docker Image'){
       
-      // deploy docker image to nexus
+  //     // deploy docker image to nexus
 
-     echo "Running: ${dockerImageTag}"
+  //    echo "Running: ${dockerImageTag}"
 
-     sh "docker kill ${dockerImageTag} > /dev/null 2>&1"
-     sh "docker rm ${dockerImageTag} > /dev/null 2>&1"
-     sh "docker run -t ${dockerImageTag}"
-   }
+  //    sh "docker kill ${dockerImageTag} > /dev/null 2>&1"
+  //    sh "docker rm ${dockerImageTag} > /dev/null 2>&1"
+  //    sh "docker run -t ${dockerImageTag}"
+  //  }
 }
