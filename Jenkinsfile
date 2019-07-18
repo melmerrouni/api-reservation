@@ -7,12 +7,13 @@ node {
     //def dockerImage
     // ip address of the docker private repository(nexus)
     
-    //def dockerRepoUrl = "localhost:8083"
-    //def dockerImageName = "hello-world-java"
-    //def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
- //    environment {
-  //     DOCKER_HOST = "tcp://172.17.0.1:2375"
-  // }
+    def dockerRepoUrl = "192.168.1.168"
+    def dockerImageName = "sinaf/reservation"
+    def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
+    environment {
+      DOCKER_HOST = "tcp://192.168.1.168:2375"
+    }
+
     stage('Clone Repo') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/melmerrouni/api-reservation.git'
@@ -49,14 +50,14 @@ node {
       //dockerImage = docker.build("hello-world-java")
     }
    
- //   stage('Deploy Docker Image'){
+   stage('Deploy Docker Image'){
       
       // deploy docker image to nexus
 
-  //    echo "Docker Image Tag Name: ${dockerImageTag}"
+     echo "Docker Image Tag Name: ${dockerImageTag}"
 
-    //  sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
-     // sh "docker tag ${dockerImageName} ${dockerImageTag}"
-     // sh "docker push ${dockerImageTag}"
-    //}
+     sh "docker login -u admin -p marouane ${dockerRepoUrl}"
+     sh "docker tag ${dockerImageName} ${dockerImageTag}"
+     sh "docker push ${dockerImageTag}"
+   }
 }
