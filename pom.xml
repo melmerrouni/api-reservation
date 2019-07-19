@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-		<docker.image.prefix>192.168.1.168/sinaf</docker.image.prefix>
+		<docker.image.prefix>192.168.1.254/sinaf</docker.image.prefix>
     <project.build.finalName>api-reservation</project.build.finalName>
 	</properties>
 

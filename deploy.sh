@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-# search container
 containerName = $1
 dockerImageTag = $2  
 docker ps -f name=$containerName | grep -w $containerName
