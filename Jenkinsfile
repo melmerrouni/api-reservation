@@ -71,8 +71,8 @@ node {
 
      echo "Running: ${dockerImageTag}"
 
-     sh "docker kill ${dockerImageTag} > /dev/null 2>&1"
-     sh "docker rm ${dockerImageTag} > /dev/null 2>&1"
-     sh "docker run -t ${dockerImageTag}"
+     sh "docker kill api-reservation > /dev/null 2>&1"
+     sh "docker rm api-reservation > /dev/null 2>&1"
+     sh "docker run -d ${dockerImageTag} --name api-reservation"
   }
 }
