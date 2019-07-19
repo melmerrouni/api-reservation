@@ -9,7 +9,7 @@ node {
     
     def dockerRepoUrl = "192.168.1.168"
     def dockerImageName = "sinaf/reservation"
-    def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
+    def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:latest"
     environment {
       DOCKER_HOST = "tcp://192.168.1.168:2375"
     }
@@ -45,34 +45,34 @@ node {
       //sh "whoami"
       //sh "ls -all /var/run/docker.sock"
       //sh "mv ./target/hello*.jar ./data" 
-      sh "./mvnw install dockerfile:build"
+      sh "./mvnw docker:build"
       
       //dockerImage = docker.build("hello-world-java")
     }
    
-   stage('Push Docker Image'){
+    stage('Push Docker Image'){
       
       // deploy docker image to nexus
 
-     echo "Docker Image Tag Name: ${dockerImageTag}"
+      echo "Docker Image Tag Name: ${dockerImageTag}"
 
-     sh "docker login -u admin -p Marouane1 ${dockerRepoUrl}"
-          echo "login"
+      sh "docker login -u admin -p Marouane1 ${dockerRepoUrl}"
+    //       echo "login"
 
-     sh "docker tag ${dockerImageName} ${dockerImageTag}"
-          echo "tag"
-     sh "docker push ${dockerImageTag}"
-          echo "push"
+     // sh "docker tag ${dockerImageName} ${dockerImageTag}"
+    //       echo "tag"
+      sh "docker push ${dockerImageTag}"
+    //       echo "push"
    }
 
-  stage('Run Docker Image'){
+  // stage('Run Docker Image'){
       
-       // deploy docker image to nexus
+  //      // deploy docker image to nexus
 
-      echo "Running: ${dockerImageTag}"
+  //     echo "Running: ${dockerImageTag}"
 
-      sh "docker kill ${dockerImageTag} > /dev/null 2>&1"
-      sh "docker rm ${dockerImageTag} > /dev/null 2>&1"
-      sh "docker run -t ${dockerImageTag}"
-    }
+  //     sh "docker kill ${dockerImageTag} > /dev/null 2>&1"
+  //     sh "docker rm ${dockerImageTag} > /dev/null 2>&1"
+  //     sh "docker run -t ${dockerImageTag}"
+  //   }
 }
