@@ -70,9 +70,9 @@ node {
        // deploy docker image to nexus
 
      echo "Running: ${dockerImageTag}"
-
+     sh "wget https://github.com/melmerrouni/api-reservation/blob/master/deploy.sh"
      sh "chmod u+x deploy.sh"
-     sh "./deploy api-reservation ${dockerImageTag}"
+     sh "./deploy.sh api-reservation ${dockerImageTag}"
    //  sh "docker run -d ${dockerImageTag} --name api-reservation"
   }
 }
