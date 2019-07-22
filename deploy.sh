@@ -10,5 +10,5 @@ if [ $0 -eq 0 ];then
 	docker rm $containerName > /dev/null 2>&1
 	docker run -d $dockerImageTag --name api-reservation
 else
-	docker run -d $dockerImageTag --name api-reservation
+	docker run -p 8088:8088 -d $dockerImageTag --name api-reservation
 fi
