@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-containerName = $1
-dockerImageTag = $2  
+containerName=$1
+dockerImageTag=$2  
 docker ps -f name=$containerName | grep -w $containerName
 
 if [ $0 -eq 0 ];then
