@@ -30,8 +30,9 @@ public class ReservationApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(ReservationRepository repository) {
 		return strings -> {
+		    
 			Stream.of("marouane", "khaoula", "chaima", "ayoub", "yassine")
-			.forEach(name -> repository.save(new Reservation(name)));
+			.forEach(name -> repository.save(new Reservation(name, "EL MERROUNI")));
 		};
 		
 	}	
@@ -43,6 +44,9 @@ interface ReservationRepository extends JpaRepository<Reservation, Long> {
 	
 	@RestResource(path = "by-name")
 	List<Reservation> findByName(@Param("name") String name);
+	
+	@RestResource(path = "by-lastname")
+	List<Reservation> findByLastName(@Param("lastname") String lastName);
 }
 
 
@@ -53,14 +57,16 @@ class Reservation {
 	@GeneratedValue
 	private Long id;
 	private String name;
+	private String lastName;
 	private ZonedDateTime creationDate = ZonedDateTime.now();
 	
 	
 	public Reservation() {
 	}
 
-	public Reservation(String name) {
+	public Reservation(String name, String lastName) {
 		this.name = name;
+		this.lastName = lastName;
 	}
 
 	public String getName() {
@@ -70,6 +76,9 @@ class Reservation {
 	public ZonedDateTime getCreationDate() {
 		return creationDate;
 	}
-	
+
+    public String getLastName() {
+        return lastName;
+    }
 	
 }
