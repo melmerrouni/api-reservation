@@ -2,7 +2,12 @@
 
 
 containerName=$1
-dockerImageTag=$2  
+dockerImageTag=$2
+
+# delete unused images
+docker image prune -f
+
+# check for existing container 
 docker ps -f name=$containerName | grep -w $containerName
 
 if [ $? -eq 0 ];then
