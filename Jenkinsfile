@@ -7,11 +7,11 @@ node {
     //def dockerImage
     // ip address of the docker private repository(nexus)
     
-    def dockerRepoUrl = "192.168.56.10"
+    def dockerRepoUrl = "registry.naf.com"
     def dockerImageName = "sinaf/reservation"
     def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:latest"
     environment {
-      DOCKER_HOST = "tcp://192.168.56.10:2375"
+      DOCKER_HOST = "tcp://registry.naf.com:2375"
     }
 
     stage('Clone Repo') { // for display purposes
@@ -56,7 +56,7 @@ node {
 
       echo "Docker Image Tag Name: ${dockerImageTag}"
 
-      sh "docker login -u admin -p Marouane1 ${dockerRepoUrl}"
+      sh "docker login -u admin -p Harbor12345 ${dockerRepoUrl}"
     //       echo "login"
 
      // sh "docker tag ${dockerImageName} ${dockerImageTag}"
